@@ -153,8 +153,7 @@ async def remind(ctx, *args):
         else:
                 guild = ctx.guild.id
                 try:
-                    current_year = datetime.now().year
-                    date = str(current_year) + '-' + args[0].replace('T', ' ') + ':00'
+                    date = args[0].replace('T', ' ') + ':00'
                     text = ''
                     t = 0
                     for mot in args:
