@@ -46,6 +46,7 @@ async def my_background_task():
         now = str(now.strftime("%H:%M"))
         if now == "10:00":
             await all()
+            await asyncio.sleep(60)
         await asyncio.sleep(45)
 
 
