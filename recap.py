@@ -141,6 +141,9 @@ async def all():
                 text = text + f' à {item[3]}'
             embed.add_field(name=item[0], value=text, inline=False)
 
+    tab_all = tab_all.sort(key=lambda x: x[1])
+    print(tab_all)
+
     embed.set_footer(text="La décibise 🎛️")
     await channel.send(embed=embed)
 
