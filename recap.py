@@ -68,7 +68,7 @@ async def get(ctx):
     t = DiscordEvents(os.environ['TOKEN'])
     lis = await t.list_guild_events(ctx.guild.id)
     channel = discord.utils.get(client.get_all_channels(), id=ctx.channel.id)
-    embed = discord.Embed(title='Récapitulatif des events à venir', url="https://assos.utc.fr/assos/decibels", description="Petit rappel quotidien des events qui arrivent à grand pas : ",
+    embed = discord.Embed(title='Récapitulatif des events à venir \n@everyone', url="https://assos.utc.fr/assos/decibels", description="Petit rappel quotidien des events qui arrivent à grand pas : ",
                           color=discord.Color.yellow())
     embed.set_author(name='Décibels')
     embed.set_thumbnail(url="https://assos.utc.fr/images/assos/722b5410-3af5-11e9-bec2-a144d884ae44/1559292260.png")
@@ -78,7 +78,7 @@ async def get(ctx):
     else:
         for item in lis:
             nom = item['name']
-            desc = item['description'] + '\n@everyone'
+            desc = item['description']
             start = item['scheduled_start_time']
 
             start_time = time.strptime(start[:-6] + start[-6:].replace(":", ""), '%Y-%m-%dT%H:%M:%S%z')
@@ -162,7 +162,7 @@ async def remind(ctx, *args):
                         if t != 0:
                             text += mot + ' '
                         t += 1
-
+                    print(date)
                     add_reminders(date, text, guild)
                     await ctx.message.add_reaction('👍')
                 except:
