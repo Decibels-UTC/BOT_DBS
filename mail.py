@@ -15,13 +15,19 @@ intents.members = True
 intents.message_content = True
 
 
+async def my_background_task():
+    while True:
+        try:
+            await send_report(1106272550432030751)
+        except:
+            pass
+        await asyncio.sleep(10)
 
 @client.event
 async def on_ready():
     print(f"Connecté en tant que {client.user} ! ")
-    while True:
-        await send_report(1106272550432030751)
-        time.sleep(20)
+    client.loop.create_task(my_background_task())
+
 
 async def send_report(chann_id):
     try:
