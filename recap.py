@@ -117,7 +117,7 @@ async def all():
         for item in tab:
             name = item[2]
             date = item[3]
-            date = date.strftime("%d %m à %H:%M")
+            date = date.strftime('mois : %m jour : %d à %H:%M %Z')
             tab_all.append((name, date, '', ''))
 
         t = DiscordEvents(os.environ['TOKEN'])
@@ -131,7 +131,7 @@ async def all():
             start_time = time.strptime(start[:-6] + start[-6:].replace(":", ""), '%Y-%m-%dT%H:%M:%S%z')
             start_timestamp = time.mktime(start_time)
             start_utc = datetime.utcfromtimestamp(start_timestamp)
-            date = start_utc.strftime('%d %m à %H:%M %Z')
+            date = start_utc.strftime('mois : %m jour : %d à %H:%M %Z')
 
             tab_all.append((nom, date, desc, place))
 
@@ -141,7 +141,7 @@ async def all():
                 text = text + f' à {item[3]}'
             embed.add_field(name=item[0], value=text, inline=False)
 
-    tab_all = tab_all.sort(key=lambda x: x[1])
+    tab_all = sorted(tab_all, key=lambda x: x[1])
     print(tab_all)
 
     embed.set_footer(text="La décibise 🎛️")
