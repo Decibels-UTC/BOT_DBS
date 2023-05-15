@@ -135,14 +135,13 @@ async def all():
 
             tab_all.append((nom, date, desc, place))
 
+        tab_all = sorted(tab_all, key=lambda x: x[1])
+
         for item in tab_all:
             text = item[2] + '\n' + f'Prévue le {item[1]}'
             if item[3] != '':
                 text = text + f' à {item[3]}'
             embed.add_field(name=item[0], value=text, inline=False)
-
-    tab_all = sorted(tab_all, key=lambda x: x[1])
-    print(tab_all)
 
     embed.set_footer(text="La décibise 🎛️")
     await channel.send(embed=embed)
