@@ -23,8 +23,8 @@ async def on_message(message):
     phrase = " ".join(words)  # On transforme les mots en une phrase
 
     if 'je suis' in phrase:
+        index = words.index('je') + 1
         try:
-            index = words.index('je') + 1
             if words[index] == 'suis':
                 # Récupérer les mot suivant et l'envoyer en réponse
                 t = ' '.join(words[index+1:])
@@ -35,7 +35,18 @@ async def on_message(message):
                 response = f'Le pseudo de {member.mention} vient dêtre modifié !'
                 await message.channel.send(response)
         except:
-            await message.channel.send(f"Bien esquivé  {member.mention}")
+            try:
+                t = ' '.join(words[index + 1:index+2])
+                member = message.author
+                await member.edit(nick=t)
+
+                response = f'Le pseudo de {member.mention} vient dêtre modifié !\cheh'
+                await message.channel.send(response)
+
+            except:
+                await message.channel.send(f"Bien esquivé  {member.mention}")
+
+
 
 
 #Remplacez le TOKEN avec votre propre token de bot Discord

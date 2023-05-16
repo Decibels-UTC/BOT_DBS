@@ -235,4 +235,19 @@ class DiscordEvents:
                 await session.close()
 
 
+@client.command()
+async def help(ctx):
+    embed = discord.Embed(title="Aide aux commandes",
+                          url="https://assos.utc.fr/assos/decibels",
+                          description="Ca peut toujours aider ! ",
+                          color=discord.Color.orange())
+    embed.set_author(name='Décibels')
+    embed.set_thumbnail(url="https://assos.utc.fr/images/assos/722b5410-3af5-11e9-bec2-a144d884ae44/1559292260.png")
+
+    embed.add_field(name="!remind : affiche dans le channel planning un récap de tous les évents programmés dans discord et ceux ajouté dans le reminder.", inline=False)
+    embed.add_field(name="!remind YYYY-MM-JJThh:mm votre texte de rappel : Ajoute un reminder dans la base de données des reminders à la date souhaité !", inline=False)
+    embed.add_field(name="!get : Affiche dans le canal courant les évents programmés dans le discord !", inline=False)
+    embed.set_footer(text="De la part des passionés de Décibels : la décibise 🎛️")
+
+
 client.run(os.environ['TOKEN'])
