@@ -26,11 +26,8 @@ async def on_message(message):
         try:
             index = words.index('je') + 1
             if words[index] == 'suis':
-                # Récupérer le mot suivant et l'envoyer en réponse
-                name = words[index+1:]
-                t = ''
-                for word in name:
-                    t+= word +' '
+                # Récupérer les mot suivant et l'envoyer en réponse
+                t = ' '.join(words[index+1:])
 
                 member = message.author
                 await member.edit(nick=t)
