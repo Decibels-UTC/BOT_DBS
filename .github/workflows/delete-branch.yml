@@ -1,0 +1,23 @@
+name: Delete Branch
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to monitor for merges
+
+jobs:
+  delete-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Delete branch after merge
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          # Extract the branch name from the ref
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          
+          # Delete the branch
+          git push --delete origin $BRANCH_NAME
