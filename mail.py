@@ -53,8 +53,8 @@ async def send_report(chann_id):
 def check_mail():
 
     imap_host = 'imap.gmail.com'
-    imap_user = os.environ['GOOGLE_MAIL']
-    imap_password = os.environ['GOOGLE_PASSWORD']
+    imap_user = os.environ['MAIL']
+    imap_password = os.environ['MAIL_PASSWORD']
 
 
     mail = imaplib.IMAP4_SSL(imap_host)
