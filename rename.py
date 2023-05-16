@@ -22,29 +22,33 @@ async def on_message(message):
     words = message.content.lower().split()  # On prend les 10 premiers mots
     phrase = " ".join(words)  # On transforme les mots en une phrase
 
+
+
+
     if 'je suis' in phrase:
-        index = words.index('je') + 1
-        try:
-            if words[index] == 'suis':
-                # Récupérer les mot suivant et l'envoyer en réponse
-                t = ' '.join(words[index+1:])
-
-                member = message.author
-                await member.edit(nick=t)
-
-                response = f'Le pseudo de {member.mention} vient dêtre modifié !'
-                await message.channel.send(response)
-        except:
+        if message.author.id != 463652129878573056:  
+            index = words.index('je') + 1
             try:
-                t = ' '.join(words[index + 1:index+2])
-                member = message.author
-                await member.edit(nick=t)
+                if words[index] == 'suis':
+                    # Récupérer les mot suivant et l'envoyer en réponse
+                    t = ' '.join(words[index+1:])
 
-                response = f'Le pseudo de {member.mention} vient dêtre modifié !\cheh'
-                await message.channel.send(response)
+                    member = message.author
+                    await member.edit(nick=t)
 
+                    response = f'Le pseudo de {member.mention} vient dêtre modifié !'
+                    await message.channel.send(response)
             except:
-                await message.channel.send(f"Bien esquivé  {member.mention}")
+                try:
+                    t = ' '.join(words[index + 1:index+2])
+                    member = message.author
+                    await member.edit(nick=t)
+
+                    response = f'Le pseudo de {member.mention} vient dêtre modifié !\cheh'
+                    await message.channel.send(response)
+
+                except:
+                    await message.channel.send(f"Bien esquivé  {member.mention}")
 
 
 
