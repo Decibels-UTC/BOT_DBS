@@ -84,7 +84,7 @@ async def on_message(message):
     phrase = " ".join(words)  # On transforme les mots en une phrase
 
     if "je suis" in phrase:
-        if rd.randint(0, 0) < 1:
+        if rd.randint(0, 2) < 1:
             if message.author.id != 463652129878573056:  # if pas Cesar
                 index = words.index("je") + 1
                 try:
