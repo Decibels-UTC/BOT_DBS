@@ -66,33 +66,50 @@ async def restore_username_routine():
         await asyncio.sleep(300)
 
 
+
+
+
 @client.event
 async def on_ready():
     print(f"Connecté en tant que {client.user} ! ")
     client.loop.create_task(restore_username_routine())
 
 
+
+
+def get_excluded():
+    global db
+    cursor = db.cursor()
+    query = "SELECT member_id FROM excluded"
+    cursor.execute(query)
+    tab = cursor.fetchall()
+    return tab
+
+
 @client.event
 async def on_message(message):
     global field
     global db
+    cursor = db.cursor()
+    member = message.author
 
-    if message.author == client.user:
+    if member == client.user:
         return
 
     words = message.content.lower().split()  # On prend les 10 premiers mots
     phrase = " ".join(words)  # On transforme les mots en une phrase
 
+
+
     if "je suis" in phrase:
         if rd.randint(0, 2) < 1:
-            if message.author.id != 463652129878573056:  # if pas Cesar
+            if message.author.id not in get_excluded():  # if pas Cesar
                 index = words.index("je") + 1
                 try:
                     if words[index] == "suis":
                         # Récupérer les mot suivant et l'envoyer en réponse
                         t = " ".join(words[index + 1 :])
 
-                        member = message.author
                         former_name = member.display_name
                         await member.edit(nick=t)
                         response = (
@@ -103,7 +120,7 @@ async def on_message(message):
                         now = datetime.now()
                         formatted_date = now.strftime("%Y-%m-%d %H:%M:%S")
                         # If user already in database
-                        cursor = db.cursor()
+
                         query = (
                             f"SELECT * FROM user_rename WHERE member_id = {member.id}"
                         )
@@ -116,7 +133,6 @@ async def on_message(message):
                             db.commit()
                         else:
                             # Add nickname change to database
-                            cursor = db.cursor()
                             parameters = (
                                 None,
                                 member.id,
@@ -130,7 +146,6 @@ async def on_message(message):
                 except:
                     try:
                         t = " ".join(words[index + 1 : index + 2])
-                        member = message.author
                         former_name = member.display_name
                         await member.edit(nick=t)
 
@@ -142,7 +157,6 @@ async def on_message(message):
                         now = datetime.now()
                         formatted_date = now.strftime("%Y-%m-%d %H:%M:%S")
                         # If user already in database
-                        cursor = db.cursor()
                         query = (
                             f"SELECT * FROM user_rename WHERE member_id = {member.id}"
                         )
@@ -155,7 +169,6 @@ async def on_message(message):
                             db.commit()
                         else:
                             # Add nickname change to database
-                            cursor = db.cursor()
                             parameters = (
                                 None,
                                 member.id,
