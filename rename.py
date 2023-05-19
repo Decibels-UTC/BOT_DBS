@@ -83,7 +83,7 @@ def get_excluded():
     query = "SELECT member_id FROM excluded"
     cursor.execute(query)
     tab = cursor.fetchall()
-    tab = [int(i) for i in tab]
+    tab = [int(i[0]) for i in tab]
     return tab
 
 
