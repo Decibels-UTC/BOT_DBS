@@ -83,6 +83,7 @@ def get_excluded():
     query = "SELECT member_id FROM excluded"
     cursor.execute(query)
     tab = cursor.fetchall()
+    tab = [int(i) for i in tab]
     return tab
 
 
@@ -103,7 +104,7 @@ async def on_message(message):
 
     if "je suis" in phrase:
         if rd.randint(0, 2) < 1:
-            if str(message.author.id) not in get_excluded():  # if pas Cesar
+            if message.author.id not in get_excluded():  # if pas Cesar
                 index = words.index("je") + 1
                 try:
                     if words[index] == "suis":
