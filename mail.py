@@ -52,7 +52,7 @@ async def send_report(chann_id):
 
 def check_mail():
 
-    imap_host = 'imap.gmail.com'
+    imap_host = os.environ['HOST']
     imap_user = os.environ['MAIL']
     imap_password = os.environ['MAIL_PASSWORD']
 
