@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv, find_dotenv
@@ -104,6 +106,7 @@ async def on_message(message):
 
     if "je suis" in phrase:
         if rd.randint(0, 2) < 1:
+
             if message.author.id not in get_excluded():  # if pas Cesar
                 index = words.index("je") + 1
                 try:
