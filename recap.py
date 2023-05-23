@@ -39,6 +39,8 @@ def add_reminders(date, title, guild):
 
 intents = discord.Intents.default()
 client = commands.Bot(command_prefix='!', intents=intents, description="BOT Discord pour l'association Décibels")
+client.remove_command('help')
+
 intents.members = True
 intents.message_content = True
 
