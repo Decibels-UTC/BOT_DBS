@@ -145,7 +145,9 @@ async def all():
             text = item[2] + '\n' + f'Prévue le {item[1]}'
             if item[3] != '':
                 text = text + f' à {item[3]}'
-            embed.add_field(name=item[0], value=text, inline=False)
+                dt = datetime.strptime(text, "Prévue le mois : %m jour : %d à %H:%M")
+                output_string = dt.strftime("Prévue le %d/%m à %H:%M")
+            embed.add_field(name=item[0], value=output_string, inline=False)
 
     embed.set_footer(text="La décibise 🎛️")
     await channel.send(embed=embed)
