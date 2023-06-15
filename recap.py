@@ -143,6 +143,7 @@ async def all():
 
         for item in tab_all:
             text = item[2] + '\n' + f'Prévue le {item[1]}'
+            print(text)
             if item[3] != '':
                 text = text + f' à {item[3]}'
                 dt = datetime.strptime(text, "Prévue le mois : %m jour : %d à %H:%M")
