@@ -143,15 +143,9 @@ async def all():
 
         for item in tab_all:
             text = item[2] + '\n' + f'Prévue le {item[1]}'
-            dt = datetime.strptime(text, "Prévue le %d/%m à %H:%M")
-            output_string = dt.strftime("Prévue le %d/%m à %H:%M")
-    
             if item[3] != '':
                 text = text + f' à {item[3]}'
-                dt = datetime.strptime(text, "Prévue le %d/%m à %H:%M")
-                output_string = dt.strftime("Prévue le %d/%m à %H:%M")
-    
-            embed.add_field(name=item[0], value=output_string, inline=False)
+            embed.add_field(name=item[0], value=text, inline=False)
 
     embed.set_footer(text="La décibise 🎛️")
     await channel.send(embed=embed)
