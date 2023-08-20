@@ -81,11 +81,15 @@ def check_mail():
             for part in msg.walk():
                 content_type = part.get_content_type()
                 if content_type == 'text/plain':
-
-                    bodies.append(part.get_payload(decode=True).decode('utf-8'))
+                    try:
+                        bodies.append(part.get_payload(decode=True).decode('utf-8'))
+                    except:
+                        bodies.append("Failed to decode message")
         else:
-
-            bodies.append(msg.get_payload(decode=True).decode('utf-8'))
+            try:
+                bodies.append(msg.get_payload(decode=True).decode('utf-8'))
+            except:
+                bodies.append("Failed to decode message")
 
         # Marquer l'email comme lu
         mail.store(id, '+FLAGS', '\\Seen')
