@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS user_rename(
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    member_id BIGINT NOT NULL,
+    original_username VARCHAR(250) NOT NULL,
+    guild_id BIGINT NOT NULL,
+    date DATETIME NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS excluded(
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    member_id BIGINT NOT NULL,
+    creation_date DATETIME NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS reminders(
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    guild BIGINT NOT NULL,
+    title VARCHAR(250) NOT NULL,
+    date DATETIME NOT NULL,
+    date_ajout DATETIME NOT NULL
+);

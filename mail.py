@@ -17,10 +17,14 @@ intents.members = True
 intents.message_content = True
 
 
+
 async def my_background_task():
     while True:
         try:
-            await send_report(1106272550432030751)
+            # channel en dur car on ne vise que le channel décibels
+            # attention si on veut rediriger vers on autre channel alors il faut update dans le code en dur
+            await send_report(os.environ["ID_DISCORD_CHANNEL_MAIL"])
+
         except:
             pass
         await asyncio.sleep(10)

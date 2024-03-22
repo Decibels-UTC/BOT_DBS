@@ -34,13 +34,11 @@ db = MySQLdb.connect(
 
 
 async def restore_username_routine():
-    # Define database fields
     global field
     global db
     last_count = -1
     while True:
         now = datetime.now()
-        # Fetch all nickname change from database
         cursor = db.cursor()
         query = "SELECT COUNT(*) FROM user_rename"
         cursor.execute(query)
@@ -52,9 +50,7 @@ async def restore_username_routine():
             cursor.execute(query)
             tab = cursor.fetchall()
         for row in tab:
-            # Parse database datetime into python datetime
             date = row[field.date.value]
-            # If 24h has passed since the nickname change
             if (now - date).days >= 1:
                 # Restore the nickname
                 guild = client.get_guild(int(row[field.guild_id.value]))
