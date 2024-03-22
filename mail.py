@@ -106,6 +106,6 @@ def check_mail():
     return len(subjects),subjects, bodies, senders
 
 
+token =os.environ["TOKEN"]
 
-
-client.run(os.environ['TOKEN'])
+client.run(token)
