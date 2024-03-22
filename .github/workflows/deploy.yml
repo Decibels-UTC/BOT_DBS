@@ -1,6 +1,13 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
- build:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: self-hosted
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,7 +27,8 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/bot_dbs:latest
           platforms: linux/amd64,linux/arm64
 
- deploy:
+
+  deploy:
     needs: build
     runs-on: self-hosted
     steps:
