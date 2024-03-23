@@ -18,5 +18,6 @@ ARG ID_DISCORD_CHANNEL_MAIL
 RUN apk update
 RUN apk add --no-cache supervisor
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir cryptography
 
 CMD ["python", "mail.py", "&&", "python", "recap.py", "&&", "python", "rename.py", "&&", "python", "role.py"]
