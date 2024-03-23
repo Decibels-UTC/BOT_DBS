@@ -10,6 +10,9 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
+import init_db as init
+
+init.init_database()
 
 intents = discord.Intents.default()
 client = commands.Bot(command_prefix='.', intents=intents, description="Bot qui redirige les mails ver sun serveur discord.")

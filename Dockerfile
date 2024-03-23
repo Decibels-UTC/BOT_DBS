@@ -2,12 +2,9 @@ FROM python:3.8-alpine
 
 WORKDIR /app
 
-COPY ./init_db.py /app
-COPY ./mail.py /app
-COPY ./recap.py /app
-COPY ./rename.py /app
-COPY ./role.py /app
+COPY ./*.py /app
 COPY ./requirements.txt /app
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ARG TOKEN
 ARG DB_NAME
@@ -18,6 +15,8 @@ ARG MAIL_PASSWORD
 ARG MAIL
 ARG ID_DISCORD_CHANNEL_MAIL
 
+RUN apk update
+RUN apk add --no-cache supervisor
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["sh", "-c", "python init_db.py && python mail.py && python recap.py && python rename.py && python role.py"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

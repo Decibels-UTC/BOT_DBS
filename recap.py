@@ -10,6 +10,9 @@ from datetime import datetime
 from discord.ext import commands
 from dotenv import load_dotenv, find_dotenv
 import pymysql as MySQLdb
+import init_db as init
+
+init.init_database()
 
 load_dotenv(find_dotenv())
 

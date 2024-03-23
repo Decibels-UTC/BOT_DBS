@@ -9,6 +9,9 @@ import pymysql as MySQLdb
 from enum import Enum
 import asyncio
 import random as rd
+import init_db as init
+
+init.init_database()
 
 load_dotenv(find_dotenv())
 

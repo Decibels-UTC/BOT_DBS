@@ -45,4 +45,3 @@ def init_database():
     init_excluded();
     init_reminders();
 
-init_database();
