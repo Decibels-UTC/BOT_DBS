@@ -1,4 +1,5 @@
 discord
 python-dotenv
 pymysql
+pymysql[rsa]
 aiohttp
