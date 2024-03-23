@@ -45,5 +45,5 @@ jobs:
                      -e DB_HOST=${{ secrets.DB_HOST }} \
                      -e MAIL=${{ secrets.MAIL }} \
                      -e ID_DISCORD_CHANNEL_MAIL=${{ secrets.ID_DISCORD_CHANNEL_MAIL }} \
-                     -d --restart always --name dbs_bot \
+                     -d --restart always --name bot_dbs \
                      ${{ secrets.DOCKER_USERNAME }}/bot_dbs:latest
