@@ -35,7 +35,7 @@ jobs:
       - name: Deploy
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
-          docker pull ${{ secrets.DOCKER_USERNAME }}/dbs_bot:latest
+          docker pull ${{ secrets.DOCKER_USERNAME }}/bot_dbs:latest
           docker stop dbs_bot || true
           docker rm dbs_bot || true
           docker run -e TOKEN=${{ secrets.TOKEN }} \
@@ -46,4 +46,4 @@ jobs:
                      -e MAIL=${{ secrets.MAIL }} \
                      -e ID_DISCORD_CHANNEL_MAIL=${{ secrets.ID_DISCORD_CHANNEL_MAIL }} \
                      -d --restart always --name dbs_bot \
-                     ${{ secrets.DOCKER_USERNAME }}/dbs_bot:latest
+                     ${{ secrets.DOCKER_USERNAME }}/bot_dbs:latest
