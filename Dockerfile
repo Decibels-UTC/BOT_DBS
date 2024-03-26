@@ -20,4 +20,4 @@ RUN apk add --no-cache supervisor
 RUN apk add --no-cache build-base libressl-dev musl-dev libffi-dev
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "mail.py", "&&", "python", "recap.py", "&&", "python", "rename.py", "&&", "python", "role.py"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
