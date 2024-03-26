@@ -44,6 +44,8 @@ jobs:
                      -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
                      -e DB_HOST=${{ secrets.DB_HOST }} \
                      -e MAIL=${{ secrets.MAIL }} \
+                     -e MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }} \
+                     -e HOST=${{ secrets.HOST }} \
                      -e ID_DISCORD_CHANNEL_MAIL=${{ secrets.ID_DISCORD_CHANNEL_MAIL }} \
                      -d --restart always --name bot_dbs \
                      ${{ secrets.DOCKER_USERNAME }}/bot_dbs:latest
