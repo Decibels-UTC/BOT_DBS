@@ -40,7 +40,7 @@ async def on_ready():
 
 async def send_report(chann_id):
     try:
-        channel = client.get_channel(chann_id)
+        channel = client.get_channel(int(chann_id))
         data = check_mail()
         for i in range(data[0]):
             subject = data[1][i]
