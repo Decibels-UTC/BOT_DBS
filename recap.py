@@ -6,7 +6,7 @@ import aiohttp
 import time
 import asyncio
 import os
-from datetime import datetime
+from datetime import datetime,timedelta
 from discord.ext import commands
 from dotenv import load_dotenv, find_dotenv
 import pymysql as MySQLdb
@@ -138,6 +138,8 @@ async def all():
             start_time = time.strptime(start[:-6] + start[-6:].replace(":", ""), '%Y-%m-%dT%H:%M:%S%z')
             start_timestamp = time.mktime(start_time)
             start_utc = datetime.utcfromtimestamp(start_timestamp)
+            two_hours = timedelta(hours=2)
+            start_utc = start_utc + two_hours
             date = start_utc.strftime('mois : %m jour : %d à %H:%M %Z')
 
             tab_all.append((nom, date, desc, place))
