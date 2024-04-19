@@ -16,6 +16,23 @@ init.init_database()
 
 load_dotenv(find_dotenv())
 
+
+months = [
+    'janvier',
+    'février',
+    'mars',
+    'avril',
+    'mai',
+    'juin',
+    'juillet',
+    'aout',
+    'septembre',
+    'octobre',
+    'novembre',
+    'décembre'
+    ]
+
+
 def get_reminders():
     db = MySQLdb.connect(host=os.environ['DB_HOST'], user=os.environ['DB_USER'], password=os.environ['DB_PASSWORD'],
                          database=os.environ['DB_NAME'])
@@ -140,7 +157,7 @@ async def all():
             start_utc = datetime.utcfromtimestamp(start_timestamp)
             two_hours = timedelta(hours=2)
             start_utc = start_utc + two_hours
-            date = start_utc.strftime('mois : %m jour : %d à %H:%M %Z')
+            date = start_utc.strftime(f' %d {months[int(start_utc.month)-1]} à %H:%M %Z')
 
             tab_all.append((nom, date, desc, place))
 
